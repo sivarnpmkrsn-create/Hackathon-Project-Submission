@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Restaurant Finder | Find the Best Food Near You</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Righteous&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-utensils"></i> Best Restaurant Finder
+            </a>
+            <div class="location-selector">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>New York, NY</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <button id="themeToggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+                <i class="fas fa-moon"></i>
+            </button>
+            <nav class="nav-links">
+                <a href="#" class="nav-link">Log in</a>
+                <a href="#" class="btn btn-primary">Sign up</a>
+            </nav>
+        </div>
+        <div class="container secondary-nav-container">
+            <nav class="secondary-nav">
+                <a href="#" class="sec-nav-link" data-category="new-locations">Ordering New Locations</a>
+                <a href="#" class="sec-nav-link" data-category="best-places">Best Places</a>
+                <a href="#" class="sec-nav-link" data-category="best-items">Best Food Items</a>
+                <a href="#" class="sec-nav-link" data-category="cool-drinks">Cool Drinks</a>
+                <a href="#" class="sec-nav-link" data-category="ice-creams">Ice Creams</a>
+                <a href="#" class="sec-nav-link" data-category="snacks">Snacks</a>
+                <a href="#" class="sec-nav-link" data-category="special-biryanis">Special Biryanis</a>
+                <a href="#" class="sec-nav-link" data-category="southern">Southern</a>
+                <a href="#" class="sec-nav-link" data-category="northern">Northern</a>
+                <a href="#" class="sec-nav-link" data-category="tea-coffee">Tea & Coffee</a>
+                <a href="#" class="sec-nav-link" data-category="pickles">Pickles</a>
+                <a href="#" class="sec-nav-link" data-category="desserts">Desserts</a>
+                <a href="#" class="sec-nav-link" data-category="starters">Starters/Appetizers</a>
+                <a href="#" class="sec-nav-link" data-category="beverages">Beverages</a>
+                <a href="#" class="sec-nav-link" data-category="breads">Breads</a>
+                <a href="#" class="sec-nav-link" data-category="soups">Soups</a>
+                <a href="#" class="sec-nav-link" data-category="home-made">Home Made</a>
+                <a href="#" class="sec-nav-link" data-category="fast-foods">Fast Foods</a>
+                <a href="#" class="sec-nav-link" data-category="other-cultures">Other Cultures</a>
+                <a href="#" class="sec-nav-link" data-category="eastern">Easterns Food</a>
+                <a href="#" class="sec-nav-link" data-category="western">Westerns Food</a>
+                <a href="#" class="sec-nav-link" data-category="tiffins">Tiffins</a>
+                <a href="#" class="sec-nav-link" data-category="lunch">Lunch</a>
+                <a href="#" class="sec-nav-link" data-category="meals">Meals</a>
+                <a href="#" class="sec-nav-link" data-category="dinner">Dinner</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <span class="flavor-finders-badge">FlavorFinders</span>
+            <h1>Discover the Best Food & Drinks</h1>
+            <p>Explore top-rated restaurants, cafes, and bars in your city.</p>
+
+            <div class="search-bar">
+                <div class="search-input-wrapper">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search for restaurants, cuisines, or dishes...">
+                </div>
+                <button class="btn btn-primary" id="searchBtn">Search</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories section-padding">
+        <div class="container">
+            <h2 class="section-title">Inspiration for your first order</h2>
+            <div class="categories-grid" id="categoriesGrid">
+                <!-- Categories will be injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Restaurants Section -->
+    <section class="restaurants section-padding">
+        <div class="container">
+            <h2 class="section-title">Delivery Restaurants in New York</h2>
+
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="rating">Top Rated</button>
+                <button class="filter-btn" data-filter="delivery">Fast Delivery</button>
+                <button class="filter-btn" data-filter="cost">Cost Saver</button>
+            </div>
+
+            <div class="restaurant-grid" id="restaurantGrid">
+                <!-- Restaurant cards will be injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <span class="logo-text">Best Restaurant Finder</span>
+                <p>&copy; 2024 Best Restaurant Finder Technologies Pvt. Ltd.</p>
+                <p style="margin-top: 5px; font-size: 0.9rem; color: #ff4757;">Powered by <strong>FlavorFinders</strong>
+                </p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>About</h4>
+                    <a href="#">Who We Are</a>
+                    <a href="#">Blog</a>
+                    <a href="#">Work With Us</a>
+                </div>
+                <div class="footer-column">
+                    <h4>For Restaurants</h4>
+                    <a href="#">Partner With Us</a>
+                    <a href="#">Apps For You</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Learn More</h4>
+                    <a href="#">Privacy</a>
+                    <a href="#">Security</a>
+                    <a href="#">Terms</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Social Links</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Location Modal -->
+    <div id="locationModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <h2>Ordering New Locations</h2>
+                <p>Vote for the next city we should expand to!</p>
+            </div>
+            <div class="vote-list">
+                <div class="vote-item">
+                    <span>Los Angeles, CA</span>
+                    <button class="btn-vote">Vote <span class="vote-count">1,240</span></button>
+                </div>
+                <div class="vote-item">
+                    <span>Chicago, IL</span>
+                    <button class="btn-vote">Vote <span class="vote-count">856</span></button>
+                </div>
+                <div class="vote-item">
+                    <span>Miami, FL</span>
+                    <button class="btn-vote">Vote <span class="vote-count">612</span></button>
+                </div>
+            </div>
+            <div class="suggest-city">
+                <input type="text" placeholder="Suggest a different city...">
+                <button class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FlavorMatch FAB -->
+    <div class="flavor-match-fab" id="flavorMatchFab">
+        <i class="fas fa-magic"></i>
+        <span class="fab-text">FlavorMatch AI</span>
+    </div>
+
+    <!-- FlavorMatch Modal -->
+    <div id="flavorMatchModal" class="modal">
+        <div class="modal-content flavor-match-content">
+            <span class="close-modal" id="closeFlavorMatch">&times;</span>
+            <div class="modal-header">
+                <h2>FlavorMatch AI</h2>
+                <p>How are you feeling right now?</p>
+            </div>
+            <div class="mood-grid">
+                <button class="mood-btn" data-mood="happy">😊 Happy</button>
+                <button class="mood-btn" data-mood="stressed">😫 Stressed</button>
+                <button class="mood-btn" data-mood="adventurous">🌍 Adventurous</button>
+                <button class="mood-btn" data-mood="lazy">😴 Lazy</button>
+            </div>
+            <div id="flavorResult" class="flavor-result" style="display:none;">
+                <h3>We Recommend:</h3>
+                <div class="recommendation-card">
+                    <img id="recImg" src="" alt="Food">
+                    <div class="rec-details">
+                        <h4 id="recTitle"></h4>
+                        <p id="recDesc"></p>
+                        <a id="recLink" href="#" class="btn btn-primary btn-sm">View Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Live Activity Feed -->
+    <div id="activityFeed" class="activity-feed"></div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

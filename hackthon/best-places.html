@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Places | Best Restaurant Finder</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Righteous&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Specific styles for Best Places page */
+        .showcase-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+        }
+
+        .showcase-hero h1 {
+            font-family: 'Righteous', cursive;
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #FFD700, #FF8C00);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .best-places-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            padding-bottom: 80px;
+        }
+
+        .place-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .place-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .place-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .place-content {
+            padding: 25px;
+        }
+
+        .place-rank {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: #FFD700;
+            color: #2F3542;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .place-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .place-location {
+            color: var(--light-text);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .place-rating {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: var(--accent-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: white;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar (Simplified) -->
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-utensils"></i> Best Restaurant Finder
+            </a>
+            <a href="index.html" class="btn btn-primary">Back to Home</a>
+        </div>
+    </header>
+
+    <div class="showcase-hero">
+        <div class="container">
+            <h1>The Gold Standard</h1>
+            <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto;">Curated selection of the absolute best
+                dining experiences in your city.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="best-places-grid">
+            <!-- Place 1 -->
+            <div class="place-card">
+                <div class="place-rank">1</div>
+                <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                    alt="Le Bernardin" class="place-img">
+                <div class="place-content">
+                    <h2 class="place-name">Le Bernardin</h2>
+                    <div class="place-location"><i class="fas fa-map-marker-alt"></i> Midtown, New York</div>
+                    <div class="place-rating">4.9 <i class="fas fa-star"></i></div>
+                    <p style="margin-top: 15px; color: #747d8c;">World-renowned French seafood restaurant offering an
+                        exquisite fine dining experience.</p>
+                </div>
+            </div>
+
+            <!-- Place 2 -->
+            <div class="place-card">
+                <div class="place-rank">2</div>
+                <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                    alt="Eleven Madison Park" class="place-img">
+                <div class="place-content">
+                    <h2 class="place-name">Eleven Madison Park</h2>
+                    <div class="place-location"><i class="fas fa-map-marker-alt"></i> Flatiron, New York</div>
+                    <div class="place-rating">4.8 <i class="fas fa-star"></i></div>
+                    <p style="margin-top: 15px; color: #747d8c;">Upscale American tasting menus in a high-ceilinged art
+                        deco space overlooking the park.</p>
+                </div>
+            </div>
+
+            <!-- Place 3 -->
+            <div class="place-card">
+                <div class="place-rank">3</div>
+                <img src="https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                    alt="Per Se" class="place-img">
+                <div class="place-content">
+                    <h2 class="place-name">Per Se</h2>
+                    <div class="place-location"><i class="fas fa-map-marker-alt"></i> Columbus Circle, New York</div>
+                    <div class="place-rating">4.7 <i class="fas fa-star"></i></div>
+                    <p style="margin-top: 15px; color: #747d8c;">Chef Thomas Keller's New American interpretation of
+                        French fine dining.</p>
+                </div>
+            </div>
+            <!-- Place 4 -->
+            <div class="place-card">
+                <div class="place-rank">4</div>
+                <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                    alt="Masa" class="place-img">
+                <div class="place-content">
+                    <h2 class="place-name">Masa</h2>
+                    <div class="place-location"><i class="fas fa-map-marker-alt"></i> Columbus Circle, New York</div>
+                    <div class="place-rating">4.7 <i class="fas fa-star"></i></div>
+                    <p style="margin-top: 15px; color: #747d8c;">Upscale Japanese dining experience with an omakase
+                        menu.</p>
+                </div>
+            </div>
+            <!-- Place 5 -->
+            <div class="place-card">
+                <div class="place-rank">5</div>
+                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                    alt="Peter Luger" class="place-img">
+                <div class="place-content">
+                    <h2 class="place-name">Peter Luger</h2>
+                    <div class="place-location"><i class="fas fa-map-marker-alt"></i> Williamsburg, Brooklyn</div>
+                    <div class="place-rating">4.6 <i class="fas fa-star"></i></div>
+                    <p style="margin-top: 15px; color: #747d8c;">Iconic steakhouse famous for its porterhouse steak and
+                        old-school vibe.</p>
+                </div>
+            </div>
+            <!-- Place 6 -->
+            <div class="place-card">
+                <div class="place-rank">6</div>
+                <img src="https://images.unsplash.com/photo-1550966871-3ed3c47e2ce2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                    alt="Le Coucou" class="place-img">
+                <div class="place-content">
+                    <h2 class="place-name">Le Coucou</h2>
+                    <div class="place-location"><i class="fas fa-map-marker-alt"></i> SoHo, New York</div>
+                    <div class="place-rating">4.6 <i class="fas fa-star"></i></div>
+                    <p style="margin-top: 15px; color: #747d8c;">Classic French dishes served in a stylish, airy
+                        setting.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <span class="logo-text">Best Restaurant Finder</span>
+                <p>&copy; 2024 Best Restaurant Finder Technologies Pvt. Ltd.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

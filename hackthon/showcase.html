@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Restaurant Finder | Showcase</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Righteous&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .showcase-hero {
+            height: 60vh;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            color: white;
+            margin-bottom: 50px;
+        }
+
+        .showcase-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content-inner {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-family: 'Righteous', cursive;
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            /* Gradient will be injected via JS */
+        }
+
+        .hero-desc {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            padding-bottom: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-utensils"></i> Best Restaurant Finder
+            </a>
+            <a href="index.html" class="btn btn-primary">Back to Home</a>
+        </div>
+    </header>
+
+    <div id="dynamicHero" class="showcase-hero">
+        <div class="container hero-content-inner">
+            <h1 id="pageTitle" class="hero-title">Loading...</h1>
+            <p id="pageDesc" class="hero-desc">Discover the best food near you.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="showcaseGrid" class="showcase-grid">
+            <!-- Content Injected via Js -->
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <span class="logo-text">Best Restaurant Finder</span>
+                <p>&copy; 2024 Best Restaurant Finder.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Inline logic for dynamic page rendering to keep it simple
+        const params = new URLSearchParams(window.location.search);
+        const category = params.get('category');
+
+        const configs = {
+            'eastern': {
+                title: "Eastern Flavors",
+                desc: "Explore the rich spices and traditions of Asian cuisine.",
+                image: "https://images.unsplash.com/photo-1596797038530-2c107229654b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+                gradient: "linear-gradient(45deg, #FF6B6B, #FFD93D)", // Red/Yellow
+                tags: ['eastern', 'asian', 'indian', 'sushi']
+            },
+            'western': {
+                title: "Western Classics",
+                desc: "From gourmet burgers to artisanal pizzas.",
+                image: "https://images.unsplash.com/photo-1549488391-7f99965a3978?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+                gradient: "linear-gradient(45deg, #48DBFB, #2E86DE)", // Blue
+                tags: ['western', 'american', 'italian', 'burger', 'pizza']
+            },
+            'tiffins': {
+                title: "The Great Indian Tiffin",
+                desc: "Crispy Dosas, Fluffy Idlis, and Vadas. The authentic taste of South India.",
+                image: "https://images.unsplash.com/photo-1610192244261-3f33de3f55e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+                gradient: "linear-gradient(45deg, #FF9966, #FF5E62)", // Sunrise Saffron
+                tags: ['tiffins', 'breakfast', 'south-indian']
+            },
+            'dinner': {
+                title: "Dinner Delights",
+                desc: "Perfect ambience and exquisite meals for your evening.",
+                image: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+                gradient: "linear-gradient(45deg, #5F27CD, #9980FA)", // Purple
+                tags: ['dinner']
+            },
+            'lunch': {
+                title: "Lunch Specials",
+                desc: "Quick, delicious, and fulfilling mid-day meals.",
+                image: "https://images.unsplash.com/photo-1565895405139-e188df996e0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+                gradient: "linear-gradient(45deg, #FF9F43, #EE5A24)", // Orange
+                tags: ['lunch']
+            },
+            'meals': {
+                title: "Full Meals",
+                desc: "Complete, hearty meals for the biggest appetites.",
+                image: "https://images.unsplash.com/photo-1547496502-ffa22d645095?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+                gradient: "linear-gradient(45deg, #576574, #222f3e)", // Dark Grey
+                tags: ['meals']
+            },
+            'best-items': {
+                title: "Best Food Items",
+                desc: "Must-try dishes that everyone is talking about.",
+                image: "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+                gradient: "linear-gradient(45deg, #ff9ff3, #f368e0)", // Pink
+                tags: ['best-items']
+            },
+            'low-prices': {
+                title: "Budget Bites",
+                desc: "Delicious food that fits your pocket.",
+                image: "https://images.unsplash.com/photo-1554679665-f5537f187268?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+                gradient: "linear-gradient(45deg, #00b894, #55efc4)", // Mint Green
+                tags: ['budget']
+            },
+            'fast-delivery': {
+                title: "Lightning Fast",
+                desc: "Food at your doorstep before you know it.",
+                image: "https://images.unsplash.com/photo-1616035075677-45f8f39962a9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+                gradient: "linear-gradient(45deg, #d63031, #ff7675)", // Red/Pink
+                tags: ['fast-delivery']
+            },
+            'cool-drinks': {
+                title: "Chill Zone",
+                desc: "Refreshing mocktails, juices, and shakes to beat the heat.",
+                image: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+                gradient: "linear-gradient(45deg, #00cec9, #81ecec)", // Cyan
+                tags: ['cool-drinks']
+            },
+            'ice-creams': {
+                title: "Frozen Delights",
+                desc: "Creamy scoops and sundaes for your sweet tooth.",
+                image: "https://images.unsplash.com/photo-1497034825429-c343d7c6a68f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+                gradient: "linear-gradient(45deg, #fd79a8, #e84393)", // Pink
+                tags: ['ice-creams']
+            },
+            'snacks': {
+                title: "Snack Attack",
+                desc: "Crispy, savory bites for your evening cravings.",
+                image: "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80", // Samosa/Snacks
+                gradient: "linear-gradient(45deg, #fdcb6e, #ffeaa7)", // Yellow
+                tags: ['snacks']
+            },
+            'special-biryanis': {
+                title: "Royal Biryanis",
+                desc: "Aromatic, flavorful rice dishes fit for a king.",
+                image: "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+                gradient: "linear-gradient(45deg, #d35400, #e67e22)", // Burnt Orange
+                tags: ['biryani']
+            },
+            'southern': {
+                title: "Southern Spice",
+                desc: "Authentic flavors from the Southern states.",
+                image: "https://images.unsplash.com/photo-1610192244261-3f33de3f55e7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+                gradient: "linear-gradient(45deg, #e17055, #fab1a0)", // Terracotta
+                tags: ['southern', 'south-indian']
+            },
+            'northern': {
+                title: "Northern Feast",
+                desc: "Rich gravies, naans, and tandoori specials.",
+                image: "https://images.unsplash.com/photo-1585937421612-70a008356f36?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+                gradient: "linear-gradient(45deg, #6c5ce7, #a29bfe)", // Purple
+                tags: ['northern']
+            },
+            'tea-coffee': {
+                title: "Brewed Perfection",
+                desc: "Artisanal teas and roasted coffees.",
+                image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+                gradient: "linear-gradient(45deg, #636e72, #b2bec3)", // Grey/Brownish
+                tags: ['tea-coffee']
+            },
+            'pickles': {
+                title: "Tangy Pickles",
+                desc: "Homemade pickles to spice up your meal.",
+                image: "https://images.unsplash.com/photo-1597362925123-77861d3fbac7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+                gradient: "linear-gradient(45deg, #00b894, #55efc4)", // Green
+                tags: ['pickles']
+            },
+            'soups': {
+                title: "Soups & Broths",
+                desc: "Warm, comforting bowls of goodness.",
+                image: "https://images.unsplash.com/photo-1547592166-23acbe346499?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+                gradient: "linear-gradient(45deg, #ff7675, #fab1a0)", // Light Red
+                tags: ['soups']
+            },
+            'home-made': {
+                title: "Just Like Home",
+                desc: "Wholesome meals prepared with love.",
+                image: "https://images.unsplash.com/photo-1506368249639-73a05d6f6488?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+                gradient: "linear-gradient(45deg, #2d3436, #636e72)", // Dark
+                tags: ['home-made']
+            },
+            'fast-foods': {
+                title: "Quick Bites",
+                desc: "Fast, tasty, and ready to go.",
+                image: "https://images.unsplash.com/photo-1561758033-d89a9ad46330?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+                gradient: "linear-gradient(45deg, #e17055, #d63031)", // Red
+                tags: ['fast-foods', 'fast food']
+            },
+            'other-cultures': {
+                title: "Global Flavors",
+                desc: "Tastes from around the world.",
+                image: "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+                gradient: "linear-gradient(45deg, #0984e3, #74b9ff)", // Blue
+                tags: ['other-cultures', 'western', 'eastern'] // Mix
+            },
+            'desserts': {
+                title: "Sweet Cravings",
+                desc: "Indulge in the finest desserts and sweet treats.",
+                image: "https://images.unsplash.com/photo-1551024601-bec0273e8a9c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+                gradient: "linear-gradient(45deg, #e84393, #fd79a8)", // Pinkish
+                tags: ['dessert', 'ice-creams']
+            },
+            'starters': {
+                title: "Savory Starters",
+                desc: "Kickstart your meal with mouth-watering appetizers.",
+                image: "https://images.unsplash.com/photo-1541529086526-db283c563270?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80", // Delicious kebab/starter
+                gradient: "linear-gradient(45deg, #e17055, #d63031)", // Deep Orange/Red
+                tags: ['starters', 'snacks']
+            },
+            'beverages': {
+                title: "Thirst Quenchers",
+                desc: "A wide variety of refreshing drinks.",
+                image: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+                gradient: "linear-gradient(45deg, #00b894, #55efc4)", // Mint
+                tags: ['cool-drinks', 'tea-coffee']
+            },
+            'breads': {
+                title: "Oven Fresh Breads",
+                desc: "Soft naans, rotis, and artisanal breads.",
+                image: "https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+                gradient: "linear-gradient(45deg, #e17055, #fab1a0)", // Orange-ish
+                tags: ['breads', 'northern']
+            }
+        };
+
+        const config = configs[category] || {
+            title: "Our Collection",
+            desc: "Discover amazing food.",
+            image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+            gradient: "linear-gradient(45deg, #333, #666)",
+            tags: []
+        };
+
+        // Apply Config
+        document.getElementById('dynamicHero').style.backgroundImage = `url('${config.image}')`;
+        const titleEl = document.getElementById('pageTitle');
+        titleEl.textContent = config.title;
+        titleEl.style.background = config.gradient;
+        titleEl.style.webkitBackgroundClip = 'text';
+        titleEl.style.webkitTextFillColor = 'transparent';
+        titleEl.style.backgroundClip = 'text';
+
+        document.getElementById('pageDesc').textContent = config.desc;
+
+        // Reuse render logic from script.js via global function or simple filter here
+        // Since we included script.js, 'restaurants' array is available.
+        // We will render manually to avoid conflict with main page logic or reusable function
+
+        const filtered = restaurants.filter(res =>
+            res.tags.some(t => config.tags.includes(t)) ||
+            config.tags.length === 0
+        );
+
+        const grid = document.getElementById('showcaseGrid');
+
+        if (filtered.length > 0) {
+            grid.innerHTML = filtered.map(res => `
+                <a href="restaurant-detail.html?id=${res.id}" class="restaurant-card" style="text-decoration:none; color:inherit; display:block;">
+                    ${res.promoted ? '<span class="promoted-badge">Promoted</span>' : ''}
+                    <img src="${res.image}" alt="${res.name}" class="card-img">
+                    <div class="card-content">
+                        <div class="card-header">
+                            <h3 class="res-name">${res.name}</h3>
+                            <div class="rating-badge">
+                                ${res.rating} <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <div class="cuisine-type" style="color: #57606f;">${res.cuisine}</div>
+                        <div class="card-footer">
+                            <span>${res.deliveryTime}</span>
+                            <span>$${res.priceForTwo} for two</span>
+                        </div>
+                    </div>
+                </a>
+            `).join('');
+        } else {
+            grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 50px;"><h3>No restaurants found in this category yet.</h3></div>';
+        }
+
+    </script>
+</body>
+
+</html>
